@@ -1,0 +1,2478 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 铁路领域知识问答RAG
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: jaguarliuu/rookie_data_alchemy:0.1.0@0a23c5c4a1e5d27604a4b0dd7b3c5a3d8d62ebcc15bae82c8acb78679386e709
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/tongyi:0.0.56@42a5fb7bc09b2f14f9d19f0ac79bec42c3c50dba07a52bf1b6d3abcd6906c739
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: anspire/anspire_search:0.0.8@59b0eff8aa6a42a863ca34f2c40065ff0d53e8bd6bc958ecb33eba72118fab56
+    version: null
+kind: app
+version: 0.4.0
+workflow:
+  conversation_variables:
+  - description: ''
+    id: 05ad6b52-76a8-43c4-898e-905062fa43b3
+    name: vlm_text
+    selector:
+    - conversation
+    - vlm_text
+    value: 'null'
+    value_type: string
+  environment_variables:
+  - description: ''
+    id: 5de9e4d0-2147-485f-bdad-c01560b58574
+    name: KG_SERVER_URL
+    selector:
+    - env
+    - KG_SERVER_URL
+    value: http://192.168.124.5:7999
+    value_type: string
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - remote_url
+      - local_file
+      enabled: true
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: code
+      id: 1761034391672-source-1761034532198-target
+      selected: false
+      source: '1761034391672'
+      sourceHandle: source
+      target: '1761034532198'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: question-classifier
+      id: 1761034532198-source-1761034570863-target
+      selected: false
+      source: '1761034532198'
+      sourceHandle: source
+      target: '1761034570863'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: answer
+      id: 1761034570863-1-1761034627542-target
+      selected: false
+      source: '1761034570863'
+      sourceHandle: '1'
+      target: '1761034627542'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: answer
+        targetType: question-classifier
+      id: 1761034627542-source-1761034652966-target
+      selected: false
+      source: '1761034627542'
+      sourceHandle: source
+      target: '1761034652966'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: tool
+      id: 1761034652966-1-1761034756830-target
+      selected: false
+      source: '1761034652966'
+      sourceHandle: '1'
+      target: '1761034756830'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: code
+      id: 1761034652966-2-1761034791603-target
+      selected: false
+      source: '1761034652966'
+      sourceHandle: '2'
+      target: '1761034791603'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: code
+      id: 1761034756830-source-1761034791603-target
+      selected: false
+      source: '1761034756830'
+      sourceHandle: source
+      target: '1761034791603'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: llm
+      id: 1761034791603-source-1761034853426-target
+      selected: false
+      source: '1761034791603'
+      sourceHandle: source
+      target: '1761034853426'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1761034853426-source-1761034882064-target
+      selected: false
+      source: '1761034853426'
+      sourceHandle: source
+      target: '1761034882064'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: if-else
+      id: 1761034570863-2-1761034958959-target
+      selected: false
+      source: '1761034570863'
+      sourceHandle: '2'
+      target: '1761034958959'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1761034978914-source-1761035230190-target
+      selected: false
+      source: '1761034978914'
+      sourceHandle: source
+      target: '1761035230190'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1761035230190-source-1761035266524-target
+      selected: false
+      source: '1761035230190'
+      sourceHandle: source
+      target: '1761035266524'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1761034958959-false-1761035369197-target
+      selected: false
+      source: '1761034958959'
+      sourceHandle: 'false'
+      target: '1761035369197'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1761034958959-false-1761035426617-target
+      selected: false
+      source: '1761034958959'
+      sourceHandle: 'false'
+      target: '1761035426617'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1761034978914-source-1761035582262-target
+      selected: false
+      source: '1761034978914'
+      sourceHandle: source
+      target: '1761035582262'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: variable-aggregator
+      id: 1761035582262-source-1761035667877-target
+      selected: false
+      source: '1761035582262'
+      sourceHandle: source
+      target: '1761035667877'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: variable-aggregator
+      id: 1761035426617-source-1761035667877-target
+      selected: false
+      source: '1761035426617'
+      sourceHandle: source
+      target: '1761035667877'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: variable-aggregator
+      id: 1761035266524-source-1761035706915-target
+      selected: false
+      source: '1761035266524'
+      sourceHandle: source
+      target: '1761035706915'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1761035369197-source-1761035773017-target
+      selected: false
+      source: '1761035369197'
+      sourceHandle: source
+      target: '1761035773017'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: variable-aggregator
+      id: 1761035773017-source-1761035706915-target
+      selected: false
+      source: '1761035773017'
+      sourceHandle: source
+      target: '1761035706915'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1761099329992'
+        sourceType: iteration-start
+        targetType: knowledge-retrieval
+      id: 1761099329992start-source-1761099345962-target
+      selected: false
+      source: 1761099329992start
+      sourceHandle: source
+      target: '1761099345962'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1761099329992'
+        sourceType: iteration-start
+        targetType: tool
+      id: 1761099329992start-source-1761099390813-target
+      selected: false
+      source: 1761099329992start
+      sourceHandle: source
+      target: '1761099390813'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1761099329992'
+        sourceType: knowledge-retrieval
+        targetType: code
+      id: 1761099345962-source-1761099411582-target
+      selected: false
+      source: '1761099345962'
+      sourceHandle: source
+      target: '1761099411582'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1761099329992'
+        sourceType: tool
+        targetType: code
+      id: 1761099390813-source-1761099411582-target
+      selected: false
+      source: '1761099390813'
+      sourceHandle: source
+      target: '1761099411582'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInLoop: false
+        sourceType: variable-aggregator
+        targetType: http-request
+      id: 1761035706915-source-1761036050413-target
+      selected: false
+      source: '1761035706915'
+      sourceHandle: source
+      target: '1761036050413'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1761101572414-source-1761099535617-target
+      selected: false
+      source: '1761101572414'
+      sourceHandle: source
+      target: '1761099535617'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1761112884320-source-1761116596243-target
+      selected: false
+      source: '1761112884320'
+      sourceHandle: source
+      target: '1761116596243'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: tool
+      id: 1761116596243-source-1761112855289-target
+      selected: false
+      source: '1761116596243'
+      sourceHandle: source
+      target: '1761112855289'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: answer
+      id: 1761112855289-source-1761116920547-target
+      selected: false
+      source: '1761112855289'
+      sourceHandle: source
+      target: '1761116920547'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1761034978914-source-1761118552222-target
+      selected: false
+      source: '1761034978914'
+      sourceHandle: source
+      target: '1761118552222'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: code
+      id: 1761034958959-false-1761118552222-target
+      selected: false
+      source: '1761034958959'
+      sourceHandle: 'false'
+      target: '1761118552222'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: answer
+      id: 1761034958959-true-1761119190936-target
+      source: '1761034958959'
+      sourceHandle: 'true'
+      target: '1761119190936'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: answer
+        targetType: llm
+      id: 1761119190936-source-1761034978914-target
+      source: '1761119190936'
+      sourceHandle: source
+      target: '1761034978914'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: variable-aggregator
+        targetType: answer
+      id: 1761035706915-source-1761119300532-target
+      source: '1761035706915'
+      sourceHandle: source
+      target: '1761119300532'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: answer
+        targetType: iteration
+      id: 1761119300532-source-1761099329992-target
+      source: '1761119300532'
+      sourceHandle: source
+      target: '1761099329992'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: variable-aggregator
+        targetType: answer
+      id: 1761035667877-source-1761119337547-target
+      source: '1761035667877'
+      sourceHandle: source
+      target: '1761119337547'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: answer
+        targetType: http-request
+      id: 1761119337547-source-1761101734045-target
+      source: '1761119337547'
+      sourceHandle: source
+      target: '1761101734045'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: iteration
+        targetType: code
+      id: 1761099329992-source-1761099485118-target
+      source: '1761099329992'
+      sourceHandle: source
+      target: '1761099485118'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: answer
+      id: 1761099485118-source-1761119476342-target
+      source: '1761099485118'
+      sourceHandle: source
+      target: '1761119476342'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: answer
+        targetType: llm
+      id: 1761119476342-source-1761101572414-target
+      source: '1761119476342'
+      sourceHandle: source
+      target: '1761101572414'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: answer
+        targetType: llm
+      id: 1761119476342-source-1761112884320-target
+      source: '1761119476342'
+      sourceHandle: source
+      target: '1761112884320'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: http-request
+        targetType: answer
+      id: 1761101734045-source-1761119476342-target
+      source: '1761101734045'
+      sourceHandle: source
+      target: '1761119476342'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: assigner
+      id: 1761034978914-source-1761128856213-target
+      source: '1761034978914'
+      sourceHandle: source
+      target: '1761128856213'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: assigner
+        targetType: llm
+      id: 1761128856213-source-1761035582262-target
+      source: '1761128856213'
+      sourceHandle: source
+      target: '1761035582262'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - default: 丰城市
+          hint: ''
+          label: base_city
+          max_length: 48
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: base_city
+        - default: ''
+          hint: ''
+          label: chat_histories
+          max_length: 20000
+          options: []
+          placeholder: ''
+          required: false
+          type: paragraph
+          variable: chat_histories
+      height: 113
+      id: '1761034391672'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "from datetime import datetime\nfrom zoneinfo import ZoneInfo\n\ndef\
+          \ main():\n    # 中文星期映射\n    weekdays_zh = {\n        0: '星期一',\n      \
+          \  1: '星期二',\n        2: '星期三',\n        3: '星期四',\n        4: '星期五',\n\
+          \        5: '星期六',\n        6: '星期日'\n    }\n    now = datetime.now(ZoneInfo(\"\
+          Asia/Shanghai\"))\n    date_str = now.strftime('%Y-%m-%d %H:%M:%S')\n  \
+          \  weekday = weekdays_zh[now.weekday()]\n    return {\n        \"time\"\
+          : f\"{date_str} {weekday}\"\n    }\n    "
+        code_language: python3
+        outputs:
+          time:
+            children: null
+            type: string
+        selected: false
+        title: 时间获取
+        type: code
+        variables: []
+      height: 51
+      id: '1761034532198'
+      position:
+        x: 381
+        y: 282
+      positionAbsolute:
+        x: 381
+        y: 282
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        classes:
+        - id: '1'
+          name: 'NO'
+        - id: '2'
+          name: 'YES'
+        instruction: '请判断用户的问题是否与铁路，铁路机车、领域知识相关。
+
+
+          判断标准：
+
+          1. 如果是打招呼、闲聊、感谢等日常对话，输出：NO
+
+          2. 如果是询问维修相关的专业技术问题，输出：YES
+
+          3. 如果是询问文档内容、操作规范、故障排查等，输出：YES
+
+          4. 如果用户明确要求检索文档、查询知识库、搜索资料等，输出：YES
+
+          5. 如果是询问画面内容，图像信息等，输出：YES
+
+          6. 其余科技类，通讯类，网络类、运输组织类的问题均输出：YES
+
+
+          内容只输出 YES 或 NO，格式要求请遵循系统提示词'
+        instructions: ''
+        model:
+          completion_params:
+            enable_thinking: false
+            response_format: json_object
+            temperature: 0.7
+          mode: chat
+          name: qwen3-32b
+          provider: langgenius/tongyi/tongyi
+        query_variable_selector:
+        - '1761034391672'
+        - sys.query
+        selected: false
+        title: RAG分类
+        type: question-classifier
+        vision:
+          enabled: false
+      height: 169
+      id: '1761034570863'
+      position:
+        x: 682
+        y: 282
+      positionAbsolute:
+        x: 682
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        answer: 用户的问题与铁路机车无关，我正全力搜索以获取答案
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 115
+      id: '1761034627542'
+      position:
+        x: 978
+        y: 282
+      positionAbsolute:
+        x: 978
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        classes:
+        - id: '1'
+          name: Y
+        - id: '2'
+          name: N
+        instruction: '你是一个专业的联网搜索判断器，目标是判断用户的问题是否需要联网搜索才能获取答案。
+
+
+          # 处理流程与判断规则：
+
+          请根据以下判断标准，仅输出 Y 或 N：
+
+          判定为 需要联网搜索（输出：Y） 的情况：
+
+          任何涉及 新闻、时事、突发事件
+
+          天气信息（包括任何城市、国内外）
+
+          人物信息（明星、网红、公众人物、专家等）
+
+          前沿科技（如 AI、芯片、量子计算、自动驾驶、脑机接口等）
+
+          高科技公司动态（如华为、苹果、特斯拉、OpenAI、阿里巴巴等）
+
+          娱乐八卦（包括影视剧、明星恋情、综艺节目、演唱会等）
+
+          政策、法规变动、考试安排等具体时间相关事务
+
+          最新、最强、最好等绝对性描述
+
+
+          判定为 不需要联网搜索（输出：N） 的情况：
+
+          通用知识、常识、逻辑推理、历史已知事实
+
+          数学、语言、编程、语法、学习方法、概念解释
+
+          模糊或泛泛问题，无法判断其具体搜索指向
+
+          当前时间，月份等，都输出N'
+        instructions: ''
+        model:
+          completion_params:
+            enable_thinking: false
+            response_format: json_object
+            temperature: 0.7
+          mode: chat
+          name: qwen3-32b
+          provider: langgenius/tongyi/tongyi
+        query_variable_selector:
+        - '1761034391672'
+        - sys.query
+        selected: false
+        title: 问题分类器 2
+        type: question-classifier
+        vision:
+          enabled: false
+      height: 169
+      id: '1761034652966'
+      position:
+        x: 1279
+        y: 282
+      positionAbsolute:
+        x: 1279
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: ''
+            ja_JP: ''
+            pt_BR: ''
+            zh_Hans: ''
+          label:
+            en_US: query_text
+            ja_JP: query_text
+            pt_BR: query_text
+            zh_Hans: query_text
+          llm_description: ''
+          max: null
+          min: null
+          name: query_text
+          options: []
+          placeholder:
+            en_US: ''
+            ja_JP: ''
+            pt_BR: ''
+            zh_Hans: ''
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        params:
+          query_text: ''
+        provider_id: 7aff966d-0efb-4128-bf3a-27c43cfdd0f6
+        provider_name: 搜索工具
+        provider_type: workflow
+        selected: false
+        title: 搜索工具
+        tool_configurations: {}
+        tool_description: ''
+        tool_label: 搜索工具
+        tool_name: onlineKnowledgeSearch
+        tool_node_version: '2'
+        tool_parameters:
+          query_text:
+            type: mixed
+            value: '{{#sys.query#}}，城市信息：{{#1761034391672.base_city#}}， 当前时间：{{#1761034532198.time#}}'
+        type: tool
+      height: 51
+      id: '1761034756830'
+      position:
+        x: 1580
+        y: 282
+      positionAbsolute:
+        x: 1580
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "\ndef main(arg1: str, arg2: str) -> dict:\n    if arg1.lower() == \"\
+          y\":\n        return {\n            \"result\": arg2,\n        }\n    else:\n\
+          \        return {\n            \"result\": \"null\",\n        }\n"
+        code_language: python3
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 搜索聚合
+        type: code
+        variables:
+        - value_selector:
+          - '1761034652966'
+          - class_name
+          value_type: string
+          variable: arg1
+        - value_selector:
+          - '1761034756830'
+          - text
+          value_type: string
+          variable: arg2
+      height: 51
+      id: '1761034791603'
+      position:
+        x: 1854
+        y: 287
+      positionAbsolute:
+        x: 1854
+        y: 287
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            response_format: text
+            temperature: 0.7
+          mode: chat
+          name: qwen3-235b-a22b-instruct-2507
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - role: system
+          text: '# 角色与目标
+
+            1. **身份设定**:
+
+               你的名字是知修同学，是Agent Chat Anything为中国国家铁路局（简称国铁集团）定制的铁路机车多模态知识图谱智能体，部署在WEB端与小程序，回答语气要正式专业，要以专家视角分析用户的问题，以用户身份逐步剖析可能的原因。
+
+            2. **功能目标**：
+
+               你是一位铁路机车运维助手，核心任务是接收用户提出的、可能模糊不清或表达不完整的问题，再根据系统提供的联网搜索结果、知识库检索结果进行精确筛选，选择出与用户问题最相关的部分，并按照输出格式要求进行回答。
+
+
+
+
+            # 输入
+
+            你将收到一个用户的原始问题，标记为 `[用户的模糊问题]`。
+
+            你将收到联网搜索的检索结果，标记为 `[联网搜索内容]`，该项可能为null。
+
+            你将收到当前日期、时间、星期的信息，标记为 `[当前时间]`。
+
+            你将收到对话历史记录，请根据当前[用户的模糊问题]匹配最相关的片段并使用
+
+
+
+            # 处理流程与要求
+
+            1.  **分析原始问题**:
+
+                * 分析用户的问题是否明确，是否存在指代需要转换（如`今天`，`明天`需要转换为具体日期，`我们铁路局`需要转换为南昌铁路局，`我们段`是指鹰潭机务段，
+            `你`需要转换为知修同学等）。
+
+                * 如果用户问题与铁路机车运维无关，你也需要回复用户问题，但要在最后询问是否需要机车运维相关的帮助。
+
+
+            2. **筛选检索结果**:
+
+               * 根据[功能描述][联网搜索内容]等结果，结合问题筛选出最相关的部分，如果检索结果不能得到答案，请按照以下步骤执行。
+
+               1. 如果你的预训练知识有相关答案:
+
+                  请根据预训练知识进行回答，回答内容需要满足输出格式要求
+
+               2. 如果你的预训练知识没有相关答案：
+
+                  请委婉提醒用户换个问题进行提问，切不可编造答案，回答内容需要满足输出格式要求
+
+
+
+            # 输出格式
+
+               * 输出字符限制500字，格式要求专业的分析报告markdown形式，可以包含markdown格式的表格'
+        - role: user
+          text: '[用户的模糊问题]: {{#sys.query#}}
+
+            [联网搜索内容]:{{#1761034791603.result#}}
+
+            [当前时间]:{{#1761034532198.time#}}'
+        selected: false
+        title: LLM
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1761034853426'
+      position:
+        x: 2155
+        y: 287
+      positionAbsolute:
+        x: 2155
+        y: 287
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        answer: '{{#1761034853426.text#}}'
+        selected: false
+        title: 直接回复 3
+        type: answer
+        variables: []
+      height: 102
+      id: '1761034882064'
+      position:
+        x: 2456
+        y: 287
+      positionAbsolute:
+        x: 2456
+        y: 287
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: not empty
+            id: 33d8e4f0-f4b4-42b4-971c-65f38f366a2d
+            value: ''
+            varType: array[file]
+            variable_selector:
+            - sys
+            - files
+          id: 'true'
+          logical_operator: and
+        selected: false
+        title: 是否需要理解画面
+        type: if-else
+      height: 123
+      id: '1761034958959'
+      position:
+        x: 978
+        y: 436
+      positionAbsolute:
+        x: 978
+        y: 436
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            response_format: text
+            temperature: 0.7
+          mode: chat
+          name: qwen3-vl-235b-a22b-instruct
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: 23d18bc4-7013-49cc-8fa3-b2f63262c792
+          role: system
+          text: '# 角色与目标
+
+            1. **身份设定**:
+
+               你是专业的铁路机车多模态知识图谱智能体，要以专家视角分析用户的问题，以用户身份逐步剖析可能的原因。
+
+            2. **功能目标**：
+
+               你是一位铁路机车运维助手，核心任务是充分结合图片分析结果给出专业的维修建议，保持专业、准确的语气，限制输出400字。
+
+
+            # 输入
+
+            你将收到一个用户的原始问题，标记为 `[用户的模糊问题]`。
+
+            你将收到用户传入的设备图片。
+
+
+            # 处理流程与要求
+
+            1.  **分析原始问题**:
+
+                * 分析用户的问题是否明确，是否存在指代需要转换（如`今天`，`明天`需要转换为具体日期，`我们铁路局`需要转换为南昌铁路局，`我们段`是指鹰潭机务段）。
+
+                * 如果用户问题与图片无关，你也需要回复用户问题，但要在最后询问是否存在错误图片并建议修正。'
+        - id: d3cb05d0-701e-48e7-8839-b635aac008c6
+          role: user
+          text: '[用户的模糊问题]：'
+        selected: false
+        title: VLM
+        type: llm
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - sys
+            - files
+          enabled: true
+      height: 87
+      id: '1761034978914'
+      position:
+        x: 1579
+        y: 452
+      positionAbsolute:
+        x: 1579
+        y: 452
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            enable_search: false
+            enable_thinking: false
+            response_format: text
+            temperature: 0.7
+          mode: chat
+          name: qwen-plus-latest
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: 64ec8145-6cab-405a-9ad5-2c01622f40b1
+          role: system
+          text: "# 角色与目标\n\n你是一位专业的查询优化与意图分析专家。你的核心任务是接收用户提出的、可能模糊不清或表达不完整的问题，并将其转化为一系列精确、有效、适合搜索引擎使用的查询语句，以及/或更清晰、可操作的、适合大型语言模型处理的提示词组合。\n\
+            \n你的目标不仅仅是转述问题，而是要深入分析用户的潜在意图，挖掘问题中隐含的、未明确表达的需求或限制条件，并考虑可能需要通过间接信息或多步骤推理才能找到答案的情况。你需要生成多个角度的查询/提示词，以覆盖用户可能的真实意图。\n\
+            \n# 输入\n\n你将收到一个用户的原始问题，标记为 `[用户的模糊问题]`。\n你将收到多模态视觉语言模型对画面的理解，标记为`[画面内容]`\n\
+            \n# 处理流程与要求\n\n1.  **分析原始问题**:\n    * 识别核心主题、实体、概念和关键词。\n    * 判断问题的清晰度。哪些信息是明确的？哪些是模糊或缺失的？\n\
+            \n2.  **挖掘隐含意图与条件**:\n    * 思考用户提出这个问题背后可能有哪些更深层次的需求？（例如，问“附近有什么好吃的”可能隐含了对菜系、价格、评分、距离、用餐场合等的潜在需求）。\n\
+            \    * 考虑问题中可能存在的隐含假设或上下文。（例如，“推荐一部电影”可能需要考虑用户的观影历史、偏好的类型、最近上映情况等）。\n\
+            \    * 识别那些没有直接提问，但对于获得满意答案至关重要的“间接条件”。\n\n3.  **生成搜索引擎查询语句**:\n    *\
+            \ **关键词化**: 将分析后的意图和条件转化为简洁、精确的关键词组合。\n    * **不要使用搜索运算符，因为我们会通过多种搜索引擎查找信息，他们的运算符格式可能不同，所以请仅构建自然语言查询条件。\n\
+            \    * **多角度探索**: 生成多个查询语句，从不同侧重点切入。例如：\n        * 基于核心主题的直接查询。\n    \
+            \    * 基于挖掘出的隐含条件的细化查询。\n        * 探索相关概念或间接信息的查询（例如，要找某个产品的替代品，可以搜索“类似[产品名]的产品”、“[产品名]\
+            \ 竞争对手”、“[产品类别] 评测”）。\n        * 考虑时间、地点等上下文信息的查询（如果适用）。\n    * **简洁性**:\
+            \ 确保查询语句对于搜索引擎是高效的。\n\n4.  **输出格式**:\n    * 清晰地将生成的“搜索引擎查询语句”列出，多个查询语句之间用“<||>”进行分割。\n\
+            \    * 仅生成查询语句，不要包含其他任何内容，最多仅提供4个最优的选择，注意给查询语句添加适当的时效性要求。\n    * 确保输出内容直接可用，用户可以复制粘贴到搜索引擎内使用。\n\
+            \    * 多个查询语句之间用<||>进行分割\n\n# 开始执行\n\n现在，请接收以下用户的模糊问题，并按照上述流程和要求进行处理：\n\
+            `[用户的模糊问题]` ：\n{{#sys.query#}}\n`[画面内容]`:\n{{#1761034978914.text#}}"
+        selected: false
+        title: VLM查询改写
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1761035230190'
+      position:
+        x: 1880
+        y: 452
+      positionAbsolute:
+        x: 1880
+        y: 452
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "import re\n\ndef main(arg2: str) -> dict:\n    pattern = r'<details[^>]*?>.*?</details>'\n\
+          \    result = re.sub(pattern, '', arg2, flags=re.DOTALL | re.IGNORECASE)\n\
+          \n    split_list = result.strip().split(\"<||>\")\n    cleaned_list = [item.strip()\
+          \ for item in split_list if item.strip()]\n\n    return {\n        \"result\"\
+          : split_list\n    }\n"
+        code_language: python3
+        outputs:
+          result:
+            children: null
+            type: array[string]
+        selected: false
+        title: VLM查询改写聚合
+        type: code
+        variables:
+        - value_selector:
+          - '1761035230190'
+          - text
+          value_type: string
+          variable: arg2
+      height: 51
+      id: '1761035266524'
+      position:
+        x: 2164.642369341668
+        y: 452
+      positionAbsolute:
+        x: 2164.642369341668
+        y: 452
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            enable_search: false
+            enable_thinking: false
+            response_format: text
+            temperature: 0.7
+          mode: chat
+          name: qwen-plus-latest
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: 04f268b3-4777-479a-83f6-9850254452fa
+          role: system
+          text: "# 角色与目标\n\n你是一位专业的查询优化与意图分析专家。你的核心任务是接收用户提出的、可能模糊不清或表达不完整的问题，并将其转化为一系列精确、有效、适合搜索引擎使用的查询语句，以及/或更清晰、可操作的、适合大型语言模型处理的提示词组合。\n\
+            \n你的目标不仅仅是转述问题，而是要深入分析用户的潜在意图，挖掘问题中隐含的、未明确表达的需求或限制条件，并考虑可能需要通过间接信息或多步骤推理才能找到答案的情况。你需要生成多个角度的查询/提示词，以覆盖用户可能的真实意图。\n\
+            \n# 输入\n\n你将收到一个用户的原始问题，标记为 `[用户的模糊问题]`。\n\n# 处理流程与要求\n\n1.  **分析原始问题**:\n\
+            \    * 识别核心主题、实体、概念和关键词。\n    * 判断问题的清晰度。哪些信息是明确的？哪些是模糊或缺失的？\n\n2.  **挖掘隐含意图与条件**:\n\
+            \    * 思考用户提出这个问题背后可能有哪些更深层次的需求？（例如，问“附近有什么好吃的”可能隐含了对菜系、价格、评分、距离、用餐场合等的潜在需求）。\n\
+            \    * 考虑问题中可能存在的隐含假设或上下文。（例如，“推荐一部电影”可能需要考虑用户的观影历史、偏好的类型、最近上映情况等）。\n\
+            \    * 识别那些没有直接提问，但对于获得满意答案至关重要的“间接条件”。\n\n3.  **生成搜索引擎查询语句**:\n    *\
+            \ **关键词化**: 将分析后的意图和条件转化为简洁、精确的关键词组合。\n    * **不要使用搜索运算符，因为我们会通过多种搜索引擎查找信息，他们的运算符格式可能不同，所以请仅构建自然语言查询条件。\n\
+            \    * **多角度探索**: 生成多个查询语句，从不同侧重点切入。例如：\n        * 基于核心主题的直接查询。\n    \
+            \    * 基于挖掘出的隐含条件的细化查询。\n        * 探索相关概念或间接信息的查询（例如，要找某个产品的替代品，可以搜索“类似[产品名]的产品”、“[产品名]\
+            \ 竞争对手”、“[产品类别] 评测”）。\n        * 考虑时间、地点等上下文信息的查询（如果适用）。\n    * **简洁性**:\
+            \ 确保查询语句对于搜索引擎是高效的。\n\n4.  **输出格式**:\n    * 清晰地将生成的“搜索引擎查询语句”列出，多个查询语句之间用“<||>”进行分割。\n\
+            \    * 仅生成查询语句，不要包含其他任何内容，最多仅提供4个最优的选择，注意给查询语句添加适当的时效性要求。\n    * 确保输出内容直接可用，用户可以复制粘贴到搜索引擎内使用。\n\
+            \    * 多个查询语句之间用<||>进行分割\n\n# 开始执行\n\n现在，请接收以下用户的模糊问题，并按照上述流程和要求进行处理：\n\
+            `[用户的模糊问题]` ：\n{{#sys.query#}}"
+        selected: false
+        title: 查询改写
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1761035369197'
+      position:
+        x: 1279
+        y: 560
+      positionAbsolute:
+        x: 1279
+        y: 560
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            enable_search: false
+            enable_thinking: false
+            response_format: text
+            temperature: 0.7
+          mode: chat
+          name: qwen-plus-latest
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: 3f150c36-1774-4bad-a2ad-7c47c490ee1a
+          role: system
+          text: '你是一个铁路机车运维助手。请从用户的实际问题中提取出与机车运维相关的关键词。
+
+
+
+            要求：
+
+            1. 只从下面【用户实际问题】中提取关键词，不要从示例中提取
+
+            2. 提取与机车维修、CIR故障、维修部件、症状相关的关键词
+
+            3. 关键词应该包括：机型名称、部件名称、故障现象、维修操作等，你可以适当扩写与问题相关的关键词提高匹配率
+
+            4. 每个关键词应该是2-10个字
+
+            5. 最多提取5-8个关键词
+
+            6. 如果问题中包含机型（如CR400、CRH2A，HXD1D等），必须提取
+
+            7. 只返回关键词，输出为JSON，不要其他任何解释
+
+
+
+            示例说明（仅供参考格式，不要从示例中提取关键词）：
+
+            - 如果用户问题是"CRH380A车次功能号注册失败"，应输出：{"keywords": ["CRH380A", "CIR设备", "通讯故障",
+            "车次注册", "车次功能号注册失败"]}
+
+            - 如果用户问题是"MMI界面不显示前后站信息"，应输出：{"keywords": ["MMI", "车次号未设置", "CIR自检", "初次上电等待",
+            "界面错误"]}
+
+
+
+            【用户实际问题】：{{#sys.query#}}'
+        selected: false
+        title: 关键词抽取
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1761035426617'
+      position:
+        x: 1279
+        y: 675
+      positionAbsolute:
+        x: 1279
+        y: 675
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            enable_search: false
+            enable_thinking: false
+            response_format: text
+            temperature: 0.7
+          mode: chat
+          name: qwen-plus-latest
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: 7e131034-8b54-4617-97f9-e8c33e49613d
+          role: system
+          text: '你是一个铁路机车运维助手。请从用户的实际问题和视觉语言模型的输入中提取出与机车运维相关的关键词。
+
+
+            要求：
+
+            1. 只从下面【用户实际问题】中提取关键词，不要从示例中提取
+
+            2. 提取与机车维修、CIR故障、维修部件、症状相关的关键词
+
+            3. 关键词应该包括：机型名称、部件名称、故障现象、维修操作等，你可以适当扩写与问题相关的关键词提高匹配率
+
+            4. 每个关键词应该是2-10个字
+
+            5. 最多提取5-8个关键词
+
+            6. 如果问题中包含机型（如CR400、CRH2A，HXD1D等），必须提取
+
+            7. 只返回关键词，输出为JSON，不要其他任何解释
+
+
+
+            示例说明（仅供参考格式，不要从示例中提取关键词）：
+
+            - 如果用户问题是"CRH380A车次功能号注册失败"，应输出：{"keywords": ["CRH380A", "CIR设备", "通讯故障",
+            "车次注册", "车次功能号注册失败"]}
+
+            - 如果用户问题是"MMI界面不显示前后站信息"，应输出：{"keywords": ["MMI", "车次号未设置", "CIR自检", "初次上电等待",
+            "界面错误"]}
+
+
+
+            【用户实际问题】：{{#sys.query#}}
+
+            【视觉语言模型识别内容】：{{#1761034978914.text#}}'
+        selected: false
+        title: VLM关键词抽取
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1761035582262'
+      position:
+        x: 1880
+        y: 554.1441317678949
+      positionAbsolute:
+        x: 1880
+        y: 554.1441317678949
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        output_type: string
+        selected: false
+        title: 关键词聚合
+        type: variable-aggregator
+        variables:
+        - - '1761035426617'
+          - text
+        - - '1761035582262'
+          - text
+      height: 134
+      id: '1761035667877'
+      position:
+        x: 2455
+        y: 764.3764808042291
+      positionAbsolute:
+        x: 2455
+        y: 764.3764808042291
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        output_type: array[string]
+        selected: false
+        title: 查询改写聚合
+        type: variable-aggregator
+        variables:
+        - - '1761035266524'
+          - result
+        - - '1761035773017'
+          - result
+      height: 134
+      id: '1761035706915'
+      position:
+        x: 2455
+        y: 452
+      positionAbsolute:
+        x: 2455
+        y: 452
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "import re\n\ndef main(arg2: str) -> dict:\n    pattern = r'<details[^>]*?>.*?</details>'\n\
+          \    result = re.sub(pattern, '', arg2, flags=re.DOTALL | re.IGNORECASE)\n\
+          \n    split_list = result.strip().split(\"<||>\")\n    cleaned_list = [item.strip()\
+          \ for item in split_list if item.strip()]\n\n    return {\n        \"result\"\
+          : split_list\n    }\n"
+        code_language: python3
+        outputs:
+          result:
+            children: null
+            type: array[string]
+        selected: false
+        title: 查询改写转list
+        type: code
+        variables:
+        - value_selector:
+          - '1761035369197'
+          - text
+          value_type: string
+          variable: arg2
+      height: 51
+      id: '1761035773017'
+      position:
+        x: 1880
+        y: 747.3873825293009
+      positionAbsolute:
+        x: 1880
+        y: 747.3873825293009
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - id: key-value-153
+            key: ''
+            type: text
+            value: '{"questions": {{#1761035706915.output#}}}'
+          type: json
+        headers: ''
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 图片查找HTTP 请求
+        type: http-request
+        url: '{{#env.KG_SERVER_URL#}}/api/qa/query-to-image'
+        variables: []
+      height: 140
+      id: '1761036050413'
+      position:
+        x: 2756
+        y: 622.6318166381238
+      positionAbsolute:
+        x: 2756
+        y: 622.6318166381238
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        error_handle_mode: terminated
+        height: 267
+        is_parallel: true
+        iterator_input_type: array[string]
+        iterator_selector:
+        - '1761035706915'
+        - output
+        output_selector:
+        - '1761099411582'
+        - result
+        output_type: array[string]
+        parallel_nums: 2
+        selected: false
+        start_node_id: 1761099329992start
+        title: 召回迭代
+        type: iteration
+        width: 686
+      height: 267
+      id: '1761099329992'
+      position:
+        x: 3056
+        y: 452
+      positionAbsolute:
+        x: 3056
+        y: 452
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 686
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1761099329992start
+      parentId: '1761099329992'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 3080
+        y: 520
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        dataset_ids:
+        - 3XDgGqgE5TQZG0iqKRWQI6Lyn5eQKPN3auTiiV+gOQ+E1NPL830d/EcjEEnliDLQ
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1761099329992'
+        multiple_retrieval_config:
+          reranking_enable: false
+          reranking_mode: weighted_score
+          reranking_model:
+            model: gte-rerank
+            provider: langgenius/tongyi/tongyi
+          score_threshold: null
+          top_k: 10
+          weights:
+            keyword_setting:
+              keyword_weight: 0.6
+            vector_setting:
+              embedding_model_name: text-embedding-v4
+              embedding_provider_name: langgenius/tongyi/tongyi
+              vector_weight: 0.4
+            weight_type: customized
+        query_variable_selector:
+        - '1761099329992'
+        - item
+        retrieval_mode: multiple
+        selected: false
+        title: 维修检索
+        type: knowledge-retrieval
+      height: 89
+      id: '1761099345962'
+      parentId: '1761099329992'
+      position:
+        x: 128
+        y: 68
+      positionAbsolute:
+        x: 3184
+        y: 520
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        is_team_authorization: true
+        iteration_id: '1761099329992'
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Search content
+            ja_JP: Search content
+            pt_BR: Search content
+            zh_Hans: 检索内容
+          label:
+            en_US: Search content
+            ja_JP: Search content
+            pt_BR: Search content
+            zh_Hans: 检索内容
+          llm_description: Search content
+          max: null
+          min: null
+          name: query
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: 10
+          form: llm
+          human_description:
+            en_US: Result number control
+            ja_JP: Result number control
+            pt_BR: Result number control
+            zh_Hans: 结果条数控制(示例值:10/20/30/40/50)
+          label:
+            en_US: Response number
+            ja_JP: Response number
+            pt_BR: Response number
+            zh_Hans: 结果条数控制
+          llm_description: Result number control
+          max: 50
+          min: 10
+          name: top_k
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Search the specified website
+            ja_JP: Search the specified website
+            pt_BR: Search the specified website
+            zh_Hans: 指定网站搜索
+          label:
+            en_US: Search the specified website
+            ja_JP: Search the specified website
+            pt_BR: Search the specified website
+            zh_Hans: 指定网站搜索
+          llm_description: Search the specified website
+          max: null
+          min: null
+          name: Insite
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Start time(eg:2025-01-01 00:00:00)
+            ja_JP: Start time(eg:2025-01-01 00:00:00)
+            pt_BR: Start time
+            zh_Hans: 起始时间(示例值:2025-01-01 00:00:00)
+          label:
+            en_US: Start time(eg:2025-01-01 00:00:00)
+            ja_JP: Start time(eg:2025-01-01 00:00:00)
+            pt_BR: Start time
+            zh_Hans: 起始时间(示例值:2025-01-01 00:00:00)
+          llm_description: Start time
+          max: null
+          min: null
+          name: FromTime
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: End time(eg:2025-01-01 00:00:00)
+            ja_JP: End time(eg:2025-01-01 00:00:00)
+            pt_BR: End time
+            zh_Hans: 结束时间(示例值:2025-01-01 00:00:00)
+          label:
+            en_US: End time(eg:2025-01-01 00:00:00)
+            ja_JP: End time(eg:2025-01-01 00:00:00)
+            pt_BR: End time
+            zh_Hans: 结束时间(示例值:2025-01-01 00:00:00)
+          llm_description: End time
+          max: null
+          min: null
+          name: ToTime
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          FromTime: ''
+          Insite: ''
+          ToTime: ''
+          query: ''
+          top_k: ''
+        provider_id: anspire/anspire_search/anspire_search
+        provider_name: anspire/anspire_search/anspire_search
+        provider_type: builtin
+        selected: false
+        title: 安思派联网搜索-PRO
+        tool_configurations: {}
+        tool_description: 安思派联网搜索插件面向AI的下一代实时智能搜索引擎，为您的应用提供格式友好的多渠道全网内容。
+        tool_label: 安思派联网搜索-PRO
+        tool_name: anspire_search_pro
+        tool_node_version: '2'
+        tool_parameters:
+          FromTime:
+            type: mixed
+            value: null
+          Insite:
+            type: mixed
+            value: null
+          ToTime:
+            type: mixed
+            value: null
+          query:
+            type: mixed
+            value: '{{#1761099329992.item#}}，历史案例'
+          top_k:
+            type: constant
+            value: 7
+        type: tool
+      height: 51
+      id: '1761099390813'
+      parentId: '1761099329992'
+      position:
+        x: 128
+        y: 196
+      positionAbsolute:
+        x: 3184
+        y: 648
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        code: "import json\n\ndef main(arg1: list[dict], arg2: list[dict]):\n    rag_chunks\
+          \ = [item[\"content\"] for item in arg1]\n    \n    search_chunks = [f\"\
+          title: {item['title']}\\ncontent: {item['content']}\" for item in arg2[0][\"\
+          results\"]]\n    \n    iter_data = {\n        \"rag_chunks\": rag_chunks,\n\
+          \        \"search_chunks\": search_chunks\n    }\n    return {\n       \
+          \ \"result\": json.dumps(iter_data, ensure_ascii=False),\n    }\n\n"
+        code_language: python3
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1761099329992'
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 并行检索归并
+        type: code
+        variables:
+        - value_selector:
+          - '1761099345962'
+          - result
+          value_type: array[object]
+          variable: arg1
+        - value_selector:
+          - '1761099390813'
+          - json
+          value_type: array[object]
+          variable: arg2
+      height: 51
+      id: '1761099411582'
+      parentId: '1761099329992'
+      position:
+        x: 428.37003948171514
+        y: 68
+      positionAbsolute:
+        x: 3484.370039481715
+        y: 520
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        code: "import json\n\ndef main(arg1: list[str]):\n    rag_set, search_set\
+          \ = set(), set()\n\n    for line in arg1:\n        load_line = json.loads(line)\n\
+          \        search_set.update(load_line[\"search_chunks\"])\n        rag_set.update(load_line[\"\
+          rag_chunks\"])\n    \n    return {\n        \"rag_result\": list(rag_set)[:30],\n\
+          \        \"search_result\": list(search_set)[:30]\n    }\n"
+        code_language: python3
+        outputs:
+          rag_result:
+            children: null
+            type: array[string]
+          search_result:
+            children: null
+            type: array[string]
+        selected: false
+        title: 检索结果去重
+        type: code
+        variables:
+        - value_selector:
+          - '1761099329992'
+          - output
+          value_type: array[string]
+          variable: arg1
+      height: 51
+      id: '1761099485118'
+      position:
+        x: 4041.596373146588
+        y: 452
+      positionAbsolute:
+        x: 4041.596373146588
+        y: 452
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        answer: '{{#1761101572414.text#}}'
+        selected: false
+        title: 直接回复 4
+        type: answer
+        variables: []
+      height: 102
+      id: '1761099535617'
+      position:
+        x: 4701.6677120172
+        y: 771.9087894183649
+      positionAbsolute:
+        x: 4701.6677120172
+        y: 771.9087894183649
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            enable_search: false
+            response_format: text
+            temperature: 0.7
+          mode: chat
+          name: qwen3-max-2025-09-23
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: b4bd5667-e218-43e6-b230-8fdb5d875164
+          role: system
+          text: "# 角色与目标\n1. **身份设定**:\n   你的名字是知修同学，是Agent Chat Anything为中国国家铁路局（简称国铁集团）定制的铁路机车多模态知识图谱智能体，部署在WEB端与小程序，回答语气要正式专业，要以专家视角分析用户的问题，以用户身份逐步剖析可能的原因。\n\
+            2. **功能目标**：\n   你是一位铁路机车运维专家，核心任务是接收用户提出的、可能模糊不清或表达不完整的问题，再根据系统提供的联网搜索结果、知识库检索结果，知识图谱关系分析，视觉模型分析结果进行精确筛选，选择出与用户问题最相关的部分，并按照输出格式要求进行回答。\n\
+            \n\n# 输入\n你将收到一个用户的原始问题，标记为 `[用户的模糊问题]`。\n你将收到视觉模型对用户画面的分析，标记为`[视觉画面描述]`，该项可能为null,\
+            \ 为null时表明用户没有传图像，你不应输出`画面分析，图片分析`等内容。\n你将收到知识库检索的结果，标记为`【知识库检索结果】`。\n\
+            你将收到专属知识联网搜索的结果，标记为`[联网搜索]`。\n你将收到匹配上的知识图谱三元组，标记为`[知识图谱]`.\n你将收到历史对话记录，标记为`[历史对话]`,\
+            \ 该项可能为null, 为null时表明这是首轮对话\n你将收到当前日期、时间、星期的信息，标记为 `[当前时间]`。\n你将收到用户所在地，辅助生成，标记为`[所在地]`。\n\
+            \n\n# 处理流程与要求\n1.  **分析原始问题**:\n    * 分析用户的问题是否明确，是否存在指代需要转换（如`今天`，`明天`需要转换为具体日期，`我们铁路局`需要转换为南昌铁路局，`我们段`是指鹰潭机务段，\
+            \ `你`需要转换为知修同学等）。\n    * 如果用户问题与铁路机车运维无关，你也需要回复用户问题，但要在最后询问是否需要机车运维相关的帮助。\n\
+            \n\n2. **分析检索结果**\n   * 如果[视觉画面描述]为null，你不可以输出画面中存在xx内容引发误导\n   * 综合分析[知识库检索结果],\
+            \ [联网搜索], [知识图谱], [历史对话]的内容，结合用户问题给出最可能的根因分析，并有条理的给出分析排查步骤,特别是要排除掉用户已经操作过但无效的步骤\n\
+            \   * 仔细分析[联网搜索]中出现的历史案例，并结合故障现象分析历史案例是否可用，可用的案例需要在报告中重点列出\n   * 如果提供的[知识库检索结果],\
+            \ [联网搜索], [知识图谱]不能满足回答要求\n   1. 如果你的预训练知识有相关答案:\n      请根据预训练知识进行回答，回答内容需要满足输出格式要求\n\
+               2. 如果你的预训练知识没有相关答案：\n      请委婉提醒用户补充更多细节，切不可编造答案，回答内容需要满足输出格式要求\n\n\
+            \n\n# 输出格式\n   * 输出字符限制1500字，格式要求专业的分析报告markdown形式，可以包含markdown格式的表格\n\
+               * 我会基于embedding多模态向量去匹配用户提问最相关的操作手册步骤图，你需要提示用户看看下面的图片是否能解决您的问题，但不得携带图号等信息"
+        - id: 606b8a53-59b4-41a2-9a5e-70972101e309
+          role: user
+          text: '[用户的模糊问题]: {{#sys.query#}}
+
+            [视觉画面描述]: {{#conversation.vlm_text#}}
+
+            [知识库检索结果]: {{#1761099485118.rag_result#}}
+
+            [联网搜索]: {{#1761099485118.search_result#}}
+
+            [知识图谱]: {{#1761101734045.body#}}
+
+            [历史对话]: {{#1761034391672.chat_histories#}}
+
+            [当前时间]: {{#1761034532198.time#}}
+
+            [所在地]：{{#1761034391672.base_city#}}
+
+            '
+        selected: false
+        title: 综合回答
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1761101572414'
+      position:
+        x: 4412.088388492629
+        y: 771.9087894183649
+      positionAbsolute:
+        x: 4412.088388492629
+        y: 771.9087894183649
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - id: key-value-326
+            key: ''
+            type: text
+            value: '{"title":  {{#sys.query#}}, {{#1761035667877.output#}}}'
+          type: json
+        headers: ''
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: 关键字聚合抽取HTTP请求
+        type: http-request
+        url: '{{#env.KG_SERVER_URL#}}/api/qa/keywords-to-graph'
+        variables: []
+      height: 140
+      id: '1761101734045'
+      position:
+        x: 3056
+        y: 759.9425113157072
+      positionAbsolute:
+        x: 3056
+        y: 759.9425113157072
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Data to be processed, recommended in JSON format. Can be an array
+              of objects, each representing a data point with properties, or a single
+              object with nested data. The tool will automatically analyze the structure
+              and extract relevant information for visualization.
+            ja_JP: Data to be processed, recommended in JSON format. Can be an array
+              of objects, each representing a data point with properties, or a single
+              object with nested data. The tool will automatically analyze the structure
+              and extract relevant information for visualization.
+            pt_BR: Data to be processed, recommended in JSON format. Can be an array
+              of objects, each representing a data point with properties, or a single
+              object with nested data. The tool will automatically analyze the structure
+              and extract relevant information for visualization.
+            zh_Hans: 待处理的数据，建议为JSON格式。可以是对象数组（每个对象代表一个数据点及其属性），或包含嵌套数据的单个对象。工具会自动分析数据结构并提取相关信息用于可视化。
+          label:
+            en_US: data
+            ja_JP: data
+            pt_BR: data
+            zh_Hans: 待处理的数据，建议为json格式
+          llm_description: Data to be processed, recommended in JSON format. Can be
+            an array of objects or a single object with nested data.
+          max: null
+          min: null
+          name: data
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Chart title to be displayed at the top of the visualization. If
+              not provided, the AI will generate an appropriate title based on the
+              data content and chart type.
+            ja_JP: Chart title to be displayed at the top of the visualization. If
+              not provided, the AI will generate an appropriate title based on the
+              data content and chart type.
+            pt_BR: Chart title to be displayed at the top of the visualization. If
+              not provided, the AI will generate an appropriate title based on the
+              data content and chart type.
+            zh_Hans: 图表标题，显示在可视化顶部。如果不提供，AI将根据数据内容和图表类型自动生成合适的标题。
+          label:
+            en_US: title
+            ja_JP: title
+            pt_BR: title
+            zh_Hans: 图表标题，不填则大模型推理生成
+          llm_description: Chart title to be displayed. If not provided, will be auto-generated
+            based on data content.
+          max: null
+          min: null
+          name: title
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: chart type (bar, line, pie, scatter, radar, funnel, heatmap, boxplot)
+            ja_JP: chart type (bar, line, pie, scatter, radar, funnel, heatmap, boxplot)
+            pt_BR: chart type (bar, line, pie, scatter, radar, funnel, heatmap, boxplot)
+            zh_Hans: 图表类型（柱状图bar、折线图line、饼图pie、散点图scatter、雷达图radar、漏斗图funnel、热力图heatmap、箱线图boxplot）
+          label:
+            en_US: chart type
+            ja_JP: chart type
+            pt_BR: chart type
+            zh_Hans: 图表类型
+          llm_description: chart type (bar, line, pie, scatter, radar, funnel, heatmap,
+            boxplot)
+          max: null
+          min: null
+          name: chart_type
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: 'Color scheme for the chart. You can either: 1) Choose a predefined
+              scheme (default, vintage, dark, macarons, infographic, shine, roma)
+              or 2) Provide custom colors as comma separated hex values (e.g. #5470c6,#91cc75,#fac858)'
+            ja_JP: 'Color scheme for the chart. You can either: 1) Choose a predefined
+              scheme (default, vintage, dark, macarons, infographic, shine, roma)
+              or 2) Provide custom colors as comma separated hex values (e.g. #5470c6,#91cc75,#fac858)'
+            pt_BR: 'Color scheme for the chart. You can either: 1) Choose a predefined
+              scheme (default, vintage, dark, macarons, infographic, shine, roma)
+              or 2) Provide custom colors as comma separated hex values (e.g. #5470c6,#91cc75,#fac858)'
+            zh_Hans: 图表配色方案。您可以：1) 选择预定义方案（默认default、复古vintage、暗色dark、马卡龙macarons、信息图infographic、明亮shine、罗马roma）或
+              2) 提供自定义颜色，使用逗号分隔的十六进制颜色值（例如：#5470c6,#91cc75,#fac858）
+          label:
+            en_US: color scheme
+            ja_JP: color scheme
+            pt_BR: color scheme
+            zh_Hans: 配色方案
+          llm_description: 'Color scheme for the chart. Either choose a predefined
+            scheme (default, vintage, dark, macarons, infographic, shine, roma) or
+            provide custom colors as comma separated hex values (e.g. #5470c6,#91cc75,#fac858)'
+          max: null
+          min: null
+          name: color_scheme
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          chart_type: ''
+          color_scheme: ''
+          data: ''
+          title: ''
+        provider_id: jaguarliuu/rookie_data_alchemy/rookie_data_alchemy
+        provider_name: jaguarliuu/rookie_data_alchemy/rookie_data_alchemy
+        provider_type: builtin
+        selected: false
+        title: 智能图表生成器
+        tool_configurations: {}
+        tool_description: 自动分析数据特征并生成适合的图表配置
+        tool_label: 智能图表生成器
+        tool_name: chart_auto_generator
+        tool_node_version: '2'
+        tool_parameters:
+          chart_type:
+            type: mixed
+            value: '{{#1761116596243.graph_type#}}'
+          color_scheme:
+            type: mixed
+            value: title
+          data:
+            type: mixed
+            value: '{{#1761116596243.data#}}'
+          title:
+            type: mixed
+            value: '{{#1761116596243.title#}}'
+        type: tool
+      height: 51
+      id: '1761112855289'
+      position:
+        x: 5035.239115991078
+        y: 883.1486387087738
+      positionAbsolute:
+        x: 5035.239115991078
+        y: 883.1486387087738
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            enable_search: false
+            enable_thinking: false
+            response_format: json_object
+            temperature: 0.7
+          mode: chat
+          name: qwen-plus-latest
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: caf67139-2a1a-4bf7-b0b3-04e881cf00e1
+          role: system
+          text: "# 角色与目标\n   你是一位铁路机车领域数据分析专家，核心任务是接收用户提出的、可能模糊不清或表达不完整的问题，再根据我提供的知识图谱分析结果，对数据进行清洗与分析，最后以JSON导出你的分析结果\n\
+            \n# 输入\n你将收到一个用户的原始问题，标记为 `[用户的模糊问题]`。\n你将收到匹配上的知识图谱三元组，标记为`[知识图谱]`。\n\
+            你将收到行业专属知识检索器的结果，标记为`[联网搜索]`\n你将收到当前日期、时间、星期的信息，标记为 `[当前时间]`。\n\n\n\n\
+            # 处理流程与要求\n1.  **分析原始问题**:\n    * 分析用户的问题是否明确，是否存在指代需要转换（如`今天`，`明天`需要转换为具体日期，`我们铁路局`需要转换为南昌铁路局，`我们段`是指鹰潭机务段）。\n\
+            2.  **分析检索结果**:\n3.  知识图谱三元组结构示例如下, head是头实体，relation是关系，tail是尾实体\n   \
+            \ {\"head\": \"GSM-R语音单元\", \"relation\": \"进行\", \"tail\": \"网络注册\"}\
+            \ \n    * 仔细分析出现次数最多的关系与尾实体，结合问题与[联网搜索]的相关资料进行`描述性统计分析`, `聚类分析`, `群组分析`,\
+            \ `相关分析`等操作，将分析结果输出为JSON的data字段，一定要给出数值，以便观察比例趋势\n    * 并从`柱状图`, `折线图`,\
+            \ `饼图`, `散点图`, `雷达图`, `漏斗图`,`热力图`中选择一个输出为JSON的type字段\n    * 根据[用户的模糊问题]和你分析内容的data，type字段。生成一个该图表的标题，放置在title字段\n\
+                * 如果知识图谱和[联网搜索]不能很好的匹配[用户的模糊问题]\n    1. 如果你的预训练知识有相关答案:\n       请根据预训练知识进行回答，回答内容需要满足输出格式要求\n\
+                2. 如果你的预训练知识没有相关答案：\n       请委婉提醒用户换个问题进行提问，切不可编造答案，回答内容需要满足输出格式要求\n\
+            \n\n# 输出格式\n1. **输出格式要求为JSON**\n2. example_response: \n  { \n    \"data\"\
+            : \n    [\n      {\"name\": \"通讯设备故障\", \"rate\": \"56%\"}, \n      {\"\
+            name\": \"MMI主板损坏\", \"rate\": \"15%\"},\n      {\"name\": \"输入信息有误\"\
+            , \"rate\": \"20%\"},\n      {\"name\": \"GPRS配置问题\", \"rate\": \"9%\"\
+            }\n    ],\n    \"type\": \"饼图\",\n    \"title\": \"车次号注册失败关系分析占比饼图\"\n\
+              }"
+        - id: 9d9c0200-b7ab-48ff-b9f3-8b6d973a5a4c
+          role: user
+          text: '[用户的模糊问题]: {{#sys.query#}}
+
+            [知识图谱]: {{#1761101734045.body#}}
+
+            [联网搜索]: {{#1761099485118.search_result#}}
+
+            [当前时间]: {{#1761034532198.time#}}'
+        reasoning_format: separated
+        selected: false
+        structured_output:
+          schema:
+            additionalProperties: false
+            properties:
+              data:
+                items:
+                  additionalProperties: false
+                  properties: {}
+                  required: []
+                  type: object
+                type: array
+              title:
+                type: string
+              type:
+                type: string
+            required:
+            - data
+            - type
+            - title
+            type: object
+        structured_output_enabled: true
+        title: 关系图表可视化
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1761112884320'
+      position:
+        x: 4402
+        y: 883.1486387087738
+      positionAbsolute:
+        x: 4402
+        y: 883.1486387087738
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "import json\n\ndef main(echarts_data: dict):\n    data = echarts_data.get(\"\
+          data\")\n    graph_type = echarts_data.get(\"type\")\n    title = echarts_data.get(\"\
+          title\")\n    return {\n        \"data\": json.dumps(data, ensure_ascii=False),\n\
+          \        \"graph_type\": graph_type,\n        \"title\": title\n    }\n"
+        code_language: python3
+        outputs:
+          data:
+            children: null
+            type: string
+          graph_type:
+            children: null
+            type: string
+          title:
+            children: null
+            type: string
+        selected: false
+        title: 可视化代码抽取
+        type: code
+        variables:
+        - value_selector:
+          - '1761112884320'
+          - structured_output
+          value_type: object
+          variable: echarts_data
+      height: 51
+      id: '1761116596243'
+      position:
+        x: 4714.0962404443335
+        y: 883.1486387087738
+      positionAbsolute:
+        x: 4714.0962404443335
+        y: 883.1486387087738
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        answer: '{{#1761112855289.text#}}'
+        selected: false
+        title: 直接回复 5
+        type: answer
+        variables: []
+      height: 102
+      id: '1761116920547'
+      position:
+        x: 5336.239115991078
+        y: 883.1486387087738
+      positionAbsolute:
+        x: 5336.239115991078
+        y: 883.1486387087738
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "\ndef main(vlm_text: str | None):\n    \n    return {\n        \"result\"\
+          : vlm_text if isinstance(vlm_text, str) else \"null\",\n    }\n"
+        code_language: python3
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: VLM结果导出
+        type: code
+        variables:
+        - value_selector:
+          - '1761034978914'
+          - text
+          value_type: string
+          variable: vlm_text
+      height: 51
+      id: '1761118552222'
+      position:
+        x: 1880
+        y: 675
+      positionAbsolute:
+        x: 1880
+        y: 675
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        answer: 正在为您分析画面内容\n
+        selected: true
+        title: 直接回复 5
+        type: answer
+        variables: []
+      height: 99
+      id: '1761119190936'
+      position:
+        x: 1279
+        y: 452
+      positionAbsolute:
+        x: 1279
+        y: 452
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        answer: 正在使用铁路专用搜索引擎匹配结果\n
+        selected: false
+        title: 直接回复 6
+        type: answer
+        variables: []
+      height: 99
+      id: '1761119300532'
+      position:
+        x: 2756
+        y: 452
+      positionAbsolute:
+        x: 2756
+        y: 452
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        answer: 正在使用GraphRAG获取知识图谱\n
+        selected: false
+        title: 直接回复 7
+        type: answer
+        variables: []
+      height: 99
+      id: '1761119337547'
+      position:
+        x: 2756
+        y: 764.3764808042291
+      positionAbsolute:
+        x: 2756
+        y: 764.3764808042291
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        answer: 多模态智能体深度研究完毕，正在为您整理答案
+        selected: false
+        title: 直接回复 8
+        type: answer
+        variables: []
+      height: 115
+      id: '1761119476342'
+      position:
+        x: 3834.156595642586
+        y: 827.01595524208
+      positionAbsolute:
+        x: 3834.156595642586
+        y: 827.01595524208
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        author: wbe20001210
+        desc: ''
+        height: 88
+        selected: false
+        showAuthor: true
+        text: ''
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 88
+      id: '1761120955537'
+      position:
+        x: 1357.395487485452
+        y: -284.5009348905713
+      positionAbsolute:
+        x: 1357.395487485452
+        y: -284.5009348905713
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1761034978914'
+          - text
+          variable_selector:
+          - conversation
+          - vlm_text
+          write_mode: over-write
+        selected: false
+        title: vlm变量抽取
+        type: assigner
+        version: '2'
+      height: 83
+      id: '1761128856213'
+      position:
+        x: 1570.068700047232
+        y: 675
+      positionAbsolute:
+        x: 1570.068700047232
+        y: 675
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    viewport:
+      x: -2660.0215715933214
+      y: -261.76641431554776
+      zoom: 0.8815911418960717
+  rag_pipeline_variables: []

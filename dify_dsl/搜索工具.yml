@@ -1,0 +1,622 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 搜索工具
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/tongyi:0.0.56@42a5fb7bc09b2f14f9d19f0ac79bec42c3c50dba07a52bf1b6d3abcd6906c739
+    version: null
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: anspire/anspire_search:0.0.8@59b0eff8aa6a42a863ca34f2c40065ff0d53e8bd6bc958ecb33eba72118fab56
+    version: null
+kind: app
+version: 0.4.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: code
+      id: 1751332939817-source-1751333036652-target
+      source: '1751332939817'
+      sourceHandle: source
+      target: '1751333036652'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: llm
+      id: 1751333036652-source-1751333017867-target
+      source: '1751333036652'
+      sourceHandle: source
+      target: '1751333017867'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1751333017867-source-1751333877942-target
+      source: '1751333017867'
+      sourceHandle: source
+      target: '1751333877942'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: iteration
+      id: 1751333877942-source-1751333939691-target
+      source: '1751333877942'
+      sourceHandle: source
+      target: '1751333939691'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: iteration
+        targetType: template-transform
+      id: 1751333939691-source-1751334196425-target
+      source: '1751333939691'
+      sourceHandle: source
+      target: '1751334196425'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: template-transform
+        targetType: end
+      id: 1751334196425-source-1751334241868-target
+      source: '1751334196425'
+      sourceHandle: source
+      target: '1751334241868'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1751333939691'
+        sourceType: iteration-start
+        targetType: tool
+      id: 1751333939691start-source-1760959056811-target
+      source: 1751333939691start
+      sourceHandle: source
+      target: '1760959056811'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1751333939691'
+        sourceType: tool
+        targetType: template-transform
+      id: 1760959056811-source-1751334016654-target
+      source: '1760959056811'
+      sourceHandle: source
+      target: '1751334016654'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: query_text
+          max_length: 256
+          options: []
+          required: true
+          type: text-input
+          variable: query_text
+      height: 87
+      id: '1751332939817'
+      position:
+        x: 78
+        y: 282
+      positionAbsolute:
+        x: 78
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            enable_search: false
+            enable_thinking: false
+          mode: chat
+          name: qwen-plus-latest
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: cbdf88ef-cccc-463e-9bf8-6b2c76654c5f
+          role: system
+          text: "# 角色与目标\n\n你是一位专业的查询优化与意图分析专家。你的核心任务是接收用户提出的、可能模糊不清或表达不完整的问题，并将其转化为一系列精确、有效、适合搜索引擎使用的查询语句，以及/或更清晰、可操作的、适合大型语言模型处理的提示词组合。\n\
+            \n你的目标不仅仅是转述问题，而是要深入分析用户的潜在意图，挖掘问题中隐含的、未明确表达的需求或限制条件，并考虑可能需要通过间接信息或多步骤推理才能找到答案的情况。你需要生成多个角度的查询/提示词，以覆盖用户可能的真实意图。\n\
+            \n# 输入\n\n你将收到一个用户的原始问题，标记为 `[用户的模糊问题]`。\n\n# 处理流程与要求\n\n1.  **分析原始问题**:\n\
+            \    * 识别核心主题、实体、概念和关键词。\n    * 判断问题的清晰度。哪些信息是明确的？哪些是模糊或缺失的？\n\n2.  **挖掘隐含意图与条件**:\n\
+            \    * 思考用户提出这个问题背后可能有哪些更深层次的需求？（例如，问“附近有什么好吃的”可能隐含了对菜系、价格、评分、距离、用餐场合等的潜在需求）。\n\
+            \    * 考虑问题中可能存在的隐含假设或上下文。（例如，“推荐一部电影”可能需要考虑用户的观影历史、偏好的类型、最近上映情况等）。\n\
+            \    * 识别那些没有直接提问，但对于获得满意答案至关重要的“间接条件”。\n\n3.  **生成搜索引擎查询语句**:\n    *\
+            \ **关键词化**: 将分析后的意图和条件转化为简洁、精确的关键词组合。\n    * **不要使用搜索运算符，因为我们会通过多种搜索引擎查找信息，他们的运算符格式可能不同，所以请仅构建自然语言查询条件。\n\
+            \    * **多角度探索**: 生成多个查询语句，从不同侧重点切入。例如：\n        * 基于核心主题的直接查询。\n    \
+            \    * 基于挖掘出的隐含条件的细化查询。\n        * 探索相关概念或间接信息的查询（例如，要找某个产品的替代品，可以搜索“类似[产品名]的产品”、“[产品名]\
+            \ 竞争对手”、“[产品类别] 评测”）。\n        * 考虑时间、地点等上下文信息的查询（如果适用）。\n    * **简洁性**:\
+            \ 确保查询语句对于搜索引擎是高效的。\n    * **时效性**: 今天的日期是：{{#1751333036652.str_today#}}(格式为：年-月-日)。注意如果是具有时效性或者时间维度的需求请结合当前时间尽量优化查询语句中可能涉及的时间条件。\n\
+            \n4.  **输出格式**:\n    * 清晰地将生成的“搜索引擎查询语句”列出，多个查询语句之间用“<||>”进行分割。\n    *\
+            \ 仅生成查询语句，不要包含其他任何内容，最多仅提供3个最优的选择，注意给查询语句添加适当的时效性要求。\n    * 确保输出内容直接可用，用户可以复制粘贴到搜索引擎内使用。\n\
+            \    * 多个查询语句之间用<||>进行分割\n\n# 开始执行\n\n现在，请接收以下用户的模糊问题，并按照上述流程和要求进行处理：\n\
+            `[用户的模糊问题]` ：\n{{#1751332939817.query_text#}}"
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 87
+      id: '1751333017867'
+      position:
+        x: 684
+        y: 282
+      positionAbsolute:
+        x: 684
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "import datetime\n\ndef main() -> dict:\n    # 获取当前日期\n    current_date\
+          \ = datetime.datetime.now().strftime(\"%Y-%m-%d\")\n\n    # 结束日期与时间\n  \
+          \  e_datetime = datetime.datetime.strptime(current_date + \" 23:59:59\"\
+          , \"%Y-%m-%d %H:%M:%S\")\n\n    n_days_ago = (e_datetime - datetime.timedelta(days=60)).strftime(\"\
+          %Y-%m-%d\")\n\n    # 开始日期与时间\n    s_datetime = datetime.datetime.strptime(n_days_ago\
+          \ + \" 00:00:00\", \"%Y-%m-%d %H:%M:%S\")\n    return {\n        \"s_datetime\"\
+          : str(s_datetime),\n        \"e_datetime\": str(e_datetime),\n        \"\
+          str_today\": str(current_date),\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          e_datetime:
+            children: null
+            type: string
+          s_datetime:
+            children: null
+            type: string
+          str_today:
+            children: null
+            type: string
+        selected: false
+        title: 时间计算
+        type: code
+        variables: []
+      height: 51
+      id: '1751333036652'
+      position:
+        x: 384
+        y: 282
+      positionAbsolute:
+        x: 384
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "import re\n\ndef main(arg2: str) -> dict:\n    pattern = r'<details[^>]*?>.*?</details>'\n\
+          \    result = re.sub(pattern, '', arg2, flags=re.DOTALL | re.IGNORECASE)\n\
+          \n    split_list = result.strip().split(\"<||>\")\n    cleaned_list = [item.strip()\
+          \ for item in split_list if item.strip()]\n\n    return {\n        \"result\"\
+          : split_list\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: array[string]
+        selected: false
+        title: 转换为array
+        type: code
+        variables:
+        - value_selector:
+          - '1751333017867'
+          - text
+          variable: arg2
+      height: 51
+      id: '1751333877942'
+      position:
+        x: 988
+        y: 282
+      positionAbsolute:
+        x: 988
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        desc: ''
+        error_handle_mode: continue-on-error
+        height: 177
+        is_parallel: false
+        iterator_selector:
+        - '1751333877942'
+        - result
+        output_selector:
+        - '1751334016654'
+        - output
+        output_type: array[string]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1751333939691start
+        title: 迭代
+        type: iteration
+        width: 692
+      height: 177
+      id: '1751333939691'
+      position:
+        x: 384
+        y: 400.0056838989258
+      positionAbsolute:
+        x: 384
+        y: 400.0056838989258
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 692
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1751333939691start
+      parentId: '1751333939691'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 408
+        y: 468.0056838989258
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        desc: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1751333939691'
+        selected: false
+        template: '{{ arg1 }}'
+        title: 模板转换
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1760959056811'
+          - text
+          value_type: string
+          variable: arg1
+      height: 51
+      id: '1751334016654'
+      parentId: '1751333939691'
+      position:
+        x: 432
+        y: 68
+      positionAbsolute:
+        x: 816
+        y: 468.0056838989258
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    - data:
+        desc: ''
+        selected: false
+        template: '{{ arg1 }}'
+        title: 模板转换 2
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1751333939691'
+          - output
+          variable: arg1
+      height: 51
+      id: '1751334196425'
+      position:
+        x: 384
+        y: 622.0056838989258
+      positionAbsolute:
+        x: 384
+        y: 622.0056838989258
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1751334196425'
+          - output
+          variable: search_text
+        selected: false
+        title: 结束
+        type: end
+      height: 87
+      id: '1751334241868'
+      position:
+        x: 688
+        y: 622.0056838989258
+      positionAbsolute:
+        x: 688
+        y: 622.0056838989258
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        isInIteration: true
+        isInLoop: false
+        is_team_authorization: false
+        iteration_id: '1751333939691'
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Search content
+            ja_JP: Search content
+            pt_BR: Search content
+            zh_Hans: 检索内容
+          label:
+            en_US: Search content
+            ja_JP: Search content
+            pt_BR: Search content
+            zh_Hans: 检索内容
+          llm_description: Search content
+          max: null
+          min: null
+          name: query
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: 10
+          form: llm
+          human_description:
+            en_US: Result number control
+            ja_JP: Result number control
+            pt_BR: Result number control
+            zh_Hans: 结果条数控制(示例值:10/20/30/40/50)
+          label:
+            en_US: Response number
+            ja_JP: Response number
+            pt_BR: Response number
+            zh_Hans: 结果条数控制
+          llm_description: Result number control
+          max: 50
+          min: 10
+          name: top_k
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: number
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Search the specified website
+            ja_JP: Search the specified website
+            pt_BR: Search the specified website
+            zh_Hans: 指定网站搜索
+          label:
+            en_US: Search the specified website
+            ja_JP: Search the specified website
+            pt_BR: Search the specified website
+            zh_Hans: 指定网站搜索
+          llm_description: Search the specified website
+          max: null
+          min: null
+          name: Insite
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: Start time(eg:2025-01-01 00:00:00)
+            ja_JP: Start time(eg:2025-01-01 00:00:00)
+            pt_BR: Start time
+            zh_Hans: 起始时间(示例值:2025-01-01 00:00:00)
+          label:
+            en_US: Start time(eg:2025-01-01 00:00:00)
+            ja_JP: Start time(eg:2025-01-01 00:00:00)
+            pt_BR: Start time
+            zh_Hans: 起始时间(示例值:2025-01-01 00:00:00)
+          llm_description: Start time
+          max: null
+          min: null
+          name: FromTime
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: End time(eg:2025-01-01 00:00:00)
+            ja_JP: End time(eg:2025-01-01 00:00:00)
+            pt_BR: End time
+            zh_Hans: 结束时间(示例值:2025-01-01 00:00:00)
+          label:
+            en_US: End time(eg:2025-01-01 00:00:00)
+            ja_JP: End time(eg:2025-01-01 00:00:00)
+            pt_BR: End time
+            zh_Hans: 结束时间(示例值:2025-01-01 00:00:00)
+          llm_description: End time
+          max: null
+          min: null
+          name: ToTime
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          FromTime: ''
+          Insite: ''
+          ToTime: ''
+          query: ''
+          top_k: ''
+        provider_id: anspire/anspire_search/anspire_search
+        provider_name: anspire/anspire_search/anspire_search
+        provider_type: builtin
+        selected: true
+        title: 安思派联网搜索
+        tool_configurations: {}
+        tool_description: 安思派联网搜索插件面向AI的下一代实时智能搜索引擎，为您的应用提供格式友好的多渠道全网内容。
+        tool_label: 安思派联网搜索
+        tool_name: anspire_search
+        tool_node_version: '2'
+        tool_parameters:
+          FromTime:
+            type: mixed
+            value: '{{#1751333036652.s_datetime#}}'
+          Insite:
+            type: mixed
+            value: null
+          ToTime:
+            type: mixed
+            value: '{{#1751333036652.e_datetime#}}'
+          query:
+            type: mixed
+            value: '{{#1751333939691.item#}}'
+          top_k:
+            type: constant
+            value: 10
+        type: tool
+      height: 51
+      id: '1760959056811'
+      parentId: '1751333939691'
+      position:
+        x: 128
+        y: 67.02078540284731
+      positionAbsolute:
+        x: 512
+        y: 467.0264693017731
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+      zIndex: 1002
+    viewport:
+      x: -308.6589615657592
+      y: -11.788166428614659
+      zoom: 1.0212266064126219
+  rag_pipeline_variables: []

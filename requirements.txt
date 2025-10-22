@@ -1,0 +1,6 @@
+fastapi[all]
+openai
+numpy
+jieba
+pyecharts
+aiohttp
