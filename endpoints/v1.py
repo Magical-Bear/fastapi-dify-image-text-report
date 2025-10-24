@@ -32,10 +32,17 @@ async def stream_generator():
             if type_ == 'end':
                 yield 'data: [DONE]\n\n'
                 end_received = True
-            elif type_ in ['think', 'plain_text', 'graph', 'table', 'images', 'echarts']:
+            elif type_ in ['think', 'plain_text', 'images']:
                 data = json.dumps({"type": type_, "text": text}, ensure_ascii=False)
                 # 输出SSE格式，注意JSON字符串转义（简单假设text不含特殊字符，如需严格可添加json.dumps）
                 yield f'data: {data}\n\n'
+            elif type_ in ['echarts']:
+                try:
+                    echarts = json.loads(text)
+                    data = json.dumps({"type": type_, "text": echarts}, ensure_ascii=False)
+                    yield f'data: {data}\n\n'
+                except:
+                    pass
             else:
                 # 未知类型，跳过或记录日志（这里简单跳过）
                 pass

@@ -434,31 +434,6 @@ workflow:
       type: custom
       zIndex: 0
     - data:
-        isInLoop: false
-        sourceType: code
-        targetType: tool
-      id: 1761116596243-source-1761112855289-target
-      selected: false
-      source: '1761116596243'
-      sourceHandle: source
-      target: '1761112855289'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        isInLoop: false
-        sourceType: tool
-        targetType: answer
-      id: 1761112855289-source-1761116920547-target
-      selected: false
-      source: '1761112855289'
-      sourceHandle: source
-      target: '1761116920547'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
         isInIteration: false
         isInLoop: false
         sourceType: llm
@@ -629,6 +604,29 @@ workflow:
       source: '1761128856213'
       sourceHandle: source
       target: '1761035582262'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: tool
+      id: 1761116596243-source-1761185514381-target
+      source: '1761116596243'
+      sourceHandle: source
+      target: '1761185514381'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: tool
+        targetType: answer
+      id: 1761185514381-source-1761116920547-target
+      source: '1761185514381'
+      sourceHandle: source
+      target: '1761116920547'
       targetHandle: target
       type: custom
       zIndex: 0
@@ -2002,174 +2000,6 @@ workflow:
       positionAbsolute:
         x: 3056
         y: 759.9425113157072
-      selected: true
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 241
-    - data:
-        is_team_authorization: true
-        paramSchemas:
-        - auto_generate: null
-          default: null
-          form: llm
-          human_description:
-            en_US: Data to be processed, recommended in JSON format. Can be an array
-              of objects, each representing a data point with properties, or a single
-              object with nested data. The tool will automatically analyze the structure
-              and extract relevant information for visualization.
-            ja_JP: Data to be processed, recommended in JSON format. Can be an array
-              of objects, each representing a data point with properties, or a single
-              object with nested data. The tool will automatically analyze the structure
-              and extract relevant information for visualization.
-            pt_BR: Data to be processed, recommended in JSON format. Can be an array
-              of objects, each representing a data point with properties, or a single
-              object with nested data. The tool will automatically analyze the structure
-              and extract relevant information for visualization.
-            zh_Hans: 待处理的数据，建议为JSON格式。可以是对象数组（每个对象代表一个数据点及其属性），或包含嵌套数据的单个对象。工具会自动分析数据结构并提取相关信息用于可视化。
-          label:
-            en_US: data
-            ja_JP: data
-            pt_BR: data
-            zh_Hans: 待处理的数据，建议为json格式
-          llm_description: Data to be processed, recommended in JSON format. Can be
-            an array of objects or a single object with nested data.
-          max: null
-          min: null
-          name: data
-          options: []
-          placeholder: null
-          precision: null
-          required: false
-          scope: null
-          template: null
-          type: string
-        - auto_generate: null
-          default: null
-          form: llm
-          human_description:
-            en_US: Chart title to be displayed at the top of the visualization. If
-              not provided, the AI will generate an appropriate title based on the
-              data content and chart type.
-            ja_JP: Chart title to be displayed at the top of the visualization. If
-              not provided, the AI will generate an appropriate title based on the
-              data content and chart type.
-            pt_BR: Chart title to be displayed at the top of the visualization. If
-              not provided, the AI will generate an appropriate title based on the
-              data content and chart type.
-            zh_Hans: 图表标题，显示在可视化顶部。如果不提供，AI将根据数据内容和图表类型自动生成合适的标题。
-          label:
-            en_US: title
-            ja_JP: title
-            pt_BR: title
-            zh_Hans: 图表标题，不填则大模型推理生成
-          llm_description: Chart title to be displayed. If not provided, will be auto-generated
-            based on data content.
-          max: null
-          min: null
-          name: title
-          options: []
-          placeholder: null
-          precision: null
-          required: false
-          scope: null
-          template: null
-          type: string
-        - auto_generate: null
-          default: null
-          form: llm
-          human_description:
-            en_US: chart type (bar, line, pie, scatter, radar, funnel, heatmap, boxplot)
-            ja_JP: chart type (bar, line, pie, scatter, radar, funnel, heatmap, boxplot)
-            pt_BR: chart type (bar, line, pie, scatter, radar, funnel, heatmap, boxplot)
-            zh_Hans: 图表类型（柱状图bar、折线图line、饼图pie、散点图scatter、雷达图radar、漏斗图funnel、热力图heatmap、箱线图boxplot）
-          label:
-            en_US: chart type
-            ja_JP: chart type
-            pt_BR: chart type
-            zh_Hans: 图表类型
-          llm_description: chart type (bar, line, pie, scatter, radar, funnel, heatmap,
-            boxplot)
-          max: null
-          min: null
-          name: chart_type
-          options: []
-          placeholder: null
-          precision: null
-          required: true
-          scope: null
-          template: null
-          type: string
-        - auto_generate: null
-          default: null
-          form: llm
-          human_description:
-            en_US: 'Color scheme for the chart. You can either: 1) Choose a predefined
-              scheme (default, vintage, dark, macarons, infographic, shine, roma)
-              or 2) Provide custom colors as comma separated hex values (e.g. #5470c6,#91cc75,#fac858)'
-            ja_JP: 'Color scheme for the chart. You can either: 1) Choose a predefined
-              scheme (default, vintage, dark, macarons, infographic, shine, roma)
-              or 2) Provide custom colors as comma separated hex values (e.g. #5470c6,#91cc75,#fac858)'
-            pt_BR: 'Color scheme for the chart. You can either: 1) Choose a predefined
-              scheme (default, vintage, dark, macarons, infographic, shine, roma)
-              or 2) Provide custom colors as comma separated hex values (e.g. #5470c6,#91cc75,#fac858)'
-            zh_Hans: 图表配色方案。您可以：1) 选择预定义方案（默认default、复古vintage、暗色dark、马卡龙macarons、信息图infographic、明亮shine、罗马roma）或
-              2) 提供自定义颜色，使用逗号分隔的十六进制颜色值（例如：#5470c6,#91cc75,#fac858）
-          label:
-            en_US: color scheme
-            ja_JP: color scheme
-            pt_BR: color scheme
-            zh_Hans: 配色方案
-          llm_description: 'Color scheme for the chart. Either choose a predefined
-            scheme (default, vintage, dark, macarons, infographic, shine, roma) or
-            provide custom colors as comma separated hex values (e.g. #5470c6,#91cc75,#fac858)'
-          max: null
-          min: null
-          name: color_scheme
-          options: []
-          placeholder: null
-          precision: null
-          required: false
-          scope: null
-          template: null
-          type: string
-        params:
-          chart_type: ''
-          color_scheme: ''
-          data: ''
-          title: ''
-        provider_id: jaguarliuu/rookie_data_alchemy/rookie_data_alchemy
-        provider_name: jaguarliuu/rookie_data_alchemy/rookie_data_alchemy
-        provider_type: builtin
-        selected: false
-        title: 智能图表生成器
-        tool_configurations: {}
-        tool_description: 自动分析数据特征并生成适合的图表配置
-        tool_label: 智能图表生成器
-        tool_name: chart_auto_generator
-        tool_node_version: '2'
-        tool_parameters:
-          chart_type:
-            type: mixed
-            value: '{{#1761116596243.graph_type#}}'
-          color_scheme:
-            type: mixed
-            value: title
-          data:
-            type: mixed
-            value: '{{#1761116596243.data#}}'
-          title:
-            type: mixed
-            value: '{{#1761116596243.title#}}'
-        type: tool
-      height: 51
-      id: '1761112855289'
-      position:
-        x: 5035.239115991078
-        y: 883.1486387087738
-      positionAbsolute:
-        x: 5035.239115991078
-        y: 883.1486387087738
       selected: false
       sourcePosition: right
       targetPosition: left
@@ -2181,33 +2011,34 @@ workflow:
           variable_selector: []
         model:
           completion_params:
-            enable_search: false
-            enable_thinking: false
             response_format: json_object
             temperature: 0.7
           mode: chat
-          name: qwen-plus-latest
+          name: qwen3-235b-a22b-instruct-2507
           provider: langgenius/tongyi/tongyi
         prompt_template:
         - id: caf67139-2a1a-4bf7-b0b3-04e881cf00e1
           role: system
           text: "# 角色与目标\n   你是一位铁路机车领域数据分析专家，核心任务是接收用户提出的、可能模糊不清或表达不完整的问题，再根据我提供的知识图谱分析结果，对数据进行清洗与分析，最后以JSON导出你的分析结果\n\
             \n# 输入\n你将收到一个用户的原始问题，标记为 `[用户的模糊问题]`。\n你将收到匹配上的知识图谱三元组，标记为`[知识图谱]`。\n\
-            你将收到行业专属知识检索器的结果，标记为`[联网搜索]`\n你将收到当前日期、时间、星期的信息，标记为 `[当前时间]`。\n\n\n\n\
-            # 处理流程与要求\n1.  **分析原始问题**:\n    * 分析用户的问题是否明确，是否存在指代需要转换（如`今天`，`明天`需要转换为具体日期，`我们铁路局`需要转换为南昌铁路局，`我们段`是指鹰潭机务段）。\n\
+            你将收到行业专属知识检索器的结果，标记为`[联网搜索]`\n你将收到当前日期、时间、星期的信息，标记为 `[当前时间]`。\n\n\n# 处理流程与要求\n\
+            1.  **分析原始问题**:\n    * 分析用户的问题是否明确，是否存在指代需要转换（如`今天`，`明天`需要转换为具体日期，`我们铁路局`需要转换为南昌铁路局，`我们段`是指鹰潭机务段）。\n\
             2.  **分析检索结果**:\n3.  知识图谱三元组结构示例如下, head是头实体，relation是关系，tail是尾实体\n   \
             \ {\"head\": \"GSM-R语音单元\", \"relation\": \"进行\", \"tail\": \"网络注册\"}\
             \ \n    * 仔细分析出现次数最多的关系与尾实体，结合问题与[联网搜索]的相关资料进行`描述性统计分析`, `聚类分析`, `群组分析`,\
-            \ `相关分析`等操作，将分析结果输出为JSON的data字段，一定要给出数值，以便观察比例趋势\n    * 并从`柱状图`, `折线图`,\
-            \ `饼图`, `散点图`, `雷达图`, `漏斗图`,`热力图`中选择一个输出为JSON的type字段\n    * 根据[用户的模糊问题]和你分析内容的data，type字段。生成一个该图表的标题，放置在title字段\n\
-                * 如果知识图谱和[联网搜索]不能很好的匹配[用户的模糊问题]\n    1. 如果你的预训练知识有相关答案:\n       请根据预训练知识进行回答，回答内容需要满足输出格式要求\n\
-                2. 如果你的预训练知识没有相关答案：\n       请委婉提醒用户换个问题进行提问，切不可编造答案，回答内容需要满足输出格式要求\n\
-            \n\n# 输出格式\n1. **输出格式要求为JSON**\n2. example_response: \n  { \n    \"data\"\
-            : \n    [\n      {\"name\": \"通讯设备故障\", \"rate\": \"56%\"}, \n      {\"\
-            name\": \"MMI主板损坏\", \"rate\": \"15%\"},\n      {\"name\": \"输入信息有误\"\
-            , \"rate\": \"20%\"},\n      {\"name\": \"GPRS配置问题\", \"rate\": \"9%\"\
-            }\n    ],\n    \"type\": \"饼图\",\n    \"title\": \"车次号注册失败关系分析占比饼图\"\n\
-              }"
+            \ `相关分析`等操作，将分析结果输出为JSON的data字段，一定要给出数值，以便观察比例趋势，在数值区别上体现出你的分析结果，不能全部一样。\n\
+            \    * 并从`柱状图`, `折线图`, `饼图`, `散点图`, `雷达图`, `漏斗图`,`热力图`中选择一个输出为JSON的type字段\n\
+                * 根据[用户的模糊问题]和你分析内容的data，type字段。生成一个该图表的标题，放置在title字段\n    * 如果知识图谱和[联网搜索]不能很好的匹配[用户的模糊问题]\n\
+                1. 如果你的预训练知识有相关答案:\n       请根据预训练知识进行回答，回答内容需要满足输出格式要求\n    2. 如果你的预训练知识没有相关答案：\n\
+                   请委婉提醒用户换个问题进行提问，切不可编造答案，回答内容需要满足输出格式要求\n\n\n# 输出格式\n1. **输出格式要求为JSON**\n\
+            2. example_response: \n  { \n    \"data\": \n    [\n      {\"name\": \"\
+            通讯设备故障\", \"value\": 56}, \n      {\"name\": \"MMI主板损坏\", \"value\": 15},\n\
+                  {\"name\": \"输入信息有误\", \"value\": 2},\n      {\"name\": \"GPRS配置问题\"\
+            , \"value\": 2}\n    ],\n    \"type\": \"饼图\",\n    \"title\": \"车次号注册失败关联故障可能性饼图\"\
+            \n  }\n\n  { \n    \"data\": \n    [\n      {\"name\": \"MMI硬件错误\", \"\
+            value\": 20}, \n      {\"name\": \"车站号码错误\", \"value\": 5},\n      {\"\
+            name\": \"GPRS干扰信号弱\", \"value\": 30},\n    ],\n    \"type\": \"柱状图\"\
+            ,\n    \"title\": \"近2年车站联系失败维修日志原因柱状图\"\n  }"
         - id: 9d9c0200-b7ab-48ff-b9f3-8b6d973a5a4c
           role: user
           text: '[用户的模糊问题]: {{#sys.query#}}
@@ -2296,7 +2127,7 @@ workflow:
       type: custom
       width: 241
     - data:
-        answer: '{{#1761112855289.text#}}'
+        answer: '{{#1761185514381.text#}}'
         selected: false
         title: 直接回复 5
         type: answer
@@ -2304,10 +2135,10 @@ workflow:
       height: 102
       id: '1761116920547'
       position:
-        x: 5336.239115991078
+        x: 5442.271649811433
         y: 883.1486387087738
       positionAbsolute:
-        x: 5336.239115991078
+        x: 5442.271649811433
         y: 883.1486387087738
       selected: false
       sourcePosition: right
@@ -2346,7 +2177,7 @@ workflow:
       width: 241
     - data:
         answer: 正在为您分析画面内容\n
-        selected: true
+        selected: false
         title: 直接回复 5
         type: answer
         variables: []
@@ -2471,8 +2302,185 @@ workflow:
       targetPosition: left
       type: custom
       width: 241
+    - data:
+        is_team_authorization: true
+        paramSchemas:
+        - auto_generate: null
+          default: null
+          form: form
+          human_description:
+            en_US: LLM model for rookie_data_alchemy.
+            ja_JP: LLM model for rookie_data_alchemy.
+            pt_BR: LLM model for rookie_data_alchemy.
+            zh_Hans: LLM model for rookie_data_alchemy.
+          label:
+            en_US: Model
+            ja_JP: Model
+            pt_BR: Model
+            zh_Hans: 模型
+          llm_description: LLM model for text2data.
+          max: null
+          min: null
+          name: model
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: llm
+          template: null
+          type: model-selector
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: wait for data
+            ja_JP: wait for data
+            pt_BR: wait for data
+            zh_Hans: 待处理的数据，建议为json格式或md
+          label:
+            en_US: data
+            ja_JP: data
+            pt_BR: data
+            zh_Hans: 待处理的数据，建议为json格式或md
+          llm_description: wait for data
+          max: null
+          min: null
+          name: data
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: title
+            ja_JP: title
+            pt_BR: title
+            zh_Hans: 图表标题，不填则大模型推理生成
+          label:
+            en_US: title
+            ja_JP: title
+            pt_BR: title
+            zh_Hans: 图表标题，不填则大模型推理生成
+          llm_description: title
+          max: null
+          min: null
+          name: title
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: chart type
+            ja_JP: chart type
+            pt_BR: chart type
+            zh_Hans: 图表类型
+          label:
+            en_US: chart type
+            ja_JP: chart type
+            pt_BR: chart type
+            zh_Hans: 图表类型
+          llm_description: chart type
+          max: null
+          min: null
+          name: chart_type
+          options: []
+          placeholder: null
+          precision: null
+          required: true
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: null
+          form: llm
+          human_description:
+            en_US: custom requirements
+            ja_JP: custom requirements
+            pt_BR: custom requirements
+            zh_Hans: 自定义需求
+          label:
+            en_US: custom requirements
+            ja_JP: custom requirements
+            pt_BR: custom requirements
+            zh_Hans: 自定义需求
+          llm_description: custom requirements
+          max: null
+          min: null
+          name: custom_requirements
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        params:
+          chart_type: ''
+          custom_requirements: ''
+          data: ''
+          model: ''
+          title: ''
+        provider_id: jaguarliuu/rookie_data_alchemy/rookie_data_alchemy
+        provider_name: jaguarliuu/rookie_data_alchemy/rookie_data_alchemy
+        provider_type: builtin
+        selected: true
+        title: rookie_data_alchemy
+        tool_configurations:
+          model:
+            type: constant
+            value:
+              completion_params:
+                enable_search: false
+                enable_thinking: false
+                response_format: json_object
+              mode: chat
+              model: qwen-plus-latest
+              model_type: llm
+              provider: langgenius/tongyi/tongyi
+        tool_description: Visualizing structured data as charts
+        tool_label: rookie_data_alchemy
+        tool_name: rookie_data_alchemy
+        tool_node_version: '2'
+        tool_parameters:
+          chart_type:
+            type: mixed
+            value: '{{#1761116596243.title#}}'
+          custom_requirements:
+            type: mixed
+            value: 配色明亮鲜艳，有区分度
+          data:
+            type: mixed
+            value: '{{#1761116596243.data#}}'
+          title:
+            type: mixed
+            value: '{{#1761116596243.title#}}'
+        type: tool
+      height: 87
+      id: '1761185514381'
+      position:
+        x: 5035.239115991078
+        y: 883.1486387087738
+      positionAbsolute:
+        x: 5035.239115991078
+        y: 883.1486387087738
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
     viewport:
-      x: -2660.0215715933214
-      y: -261.76641431554776
+      x: -3911.0756014231665
+      y: -420.40350494284723
       zoom: 0.8815911418960717
   rag_pipeline_variables: []
